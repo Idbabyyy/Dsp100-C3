@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/product.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-info">
+        <div class="safe">
+          <img src="assets/images/header 1.jpg" alt="" />
+          <p class="head">Safe & Secure Payment</p>
+        </div>
+        <div class="safe">
+          <img src="assets/images/header 2.jpg" alt="" />
+          <p class="head">Expert Advice</p>
+        </div>
+        <div class="safe">
+          <img src="assets/images/header 3.jpg" alt="" />
+          <p class="head">Best Price Assured</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="product-section">
+      <h2>Seeds</h2>
+      <div class="product-grid" id="product-grid">
+        
+        </div>
+        
+
+           <script>
+            let productData = [
+             {name :"Samaho tomato seed",
+             images :"assets/images/product 1.jpg",
+             discount :" 983",
+             price : 90000,
+             size :"3500 seeds"},
+              {name :"Samaho tomato seed 2",
+             images :"assets/images/product 1.jpg",
+             discount :" 983",
+             price :32000,
+             size :"3500 seeds"},
+             
+            ];
+
+            function displayproduct() {
+const productContainer = document.getElementById("product-grid");
+ 
+
+productData.forEach((element, index) => {
+  const productCard =` <div class="product-card" id="card" data-index="${index}" >
+          <img src="assets/images/product 2.jpg" alt="Saaho Tomato Seeds" />
+          <div class="product-info">
+            <h3>${element.name}</h3>
+            <p>Syngenta</p>
+            <p class="price">₹983 <span class="original-price">₹1450</span></p>
+            <p class="saved-price">Saved Price ₹467</p>
+            <select>
+              <option>3500 seeds</option>
+            </select>
+          </div>
+        </div>`;
+
+        productContainer.innerHTML += productCard;
+    
+
+})
+       
+ 
+ document.querySelectorAll(".product-card").forEach((item, index)=>{
+  item.addEventListener("click", (e)=>{
+   const prodIndex = e.currentTarget.getAttribute("data-index")
+   const product = productData[prodIndex]
+   console.log(`you clicked on ${product.name}`);
+
+   // create function to save to localstorage
+const data = typeof product === `object` ? JSON.stringify(product) : product;
+localStorage.setItem("product", data);
+
+window.location = "checkout.html"
+  })
+ })   
+
+}
+window.unLoad = displayproduct();
+
+
+
+
+
+    </script>
+  </body>
+</html>
